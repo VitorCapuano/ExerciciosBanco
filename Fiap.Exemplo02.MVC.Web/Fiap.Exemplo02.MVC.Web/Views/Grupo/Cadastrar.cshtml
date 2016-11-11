@@ -1,0 +1,47 @@
+﻿@model Fiap.Exemplo02.MVC.Web.Models.Grupo
+@{
+    ViewBag.Title = "Cadastrar";
+}
+<h2>Cadastro de Grupos</h2>
+@Helper.Message(TempData["msg"], "alert alert-success")
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(a => a.Id)
+    <div class="form-group">
+        @Html.LabelFor(a => a.Nome)
+        @Html.TextBoxFor(a => a.Nome, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(a => a.Nota)
+        @Html.TextBoxFor(a => a.Nota, new { @class = "form-control" })
+    </div>
+   
+    <div class="form-group">
+        @Html.LabelFor(a => a.Projeto.nome)
+        @Html.TextBoxFor(a => a.Projeto.nome, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(a=>a.Projeto.descricao)
+        @Html.TextAreaFor(a=> a.Projeto.descricao, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(a => a.Projeto.DataInicio);
+        @Html.TextBoxFor(a=> a.Projeto.DataInicio, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(a => a.Projeto.DataTermino);
+        @Html.TextBoxFor(a => a.Projeto.DataTermino, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.CheckBoxFor(a=>a.Projeto.Entregue)
+        @Html.LabelFor(a=>a.Projeto.Entregue)
+    </div>
+
+    <div class="form-group">
+        @Helper.Submit("Salvar", "btn btn-primary")
+    </div>
+}
