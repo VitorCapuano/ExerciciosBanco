@@ -1,5 +1,6 @@
-﻿using Fiap.Exemplo02.MVC.Web.Models;
+﻿using Fiap.Exemplo02.Dominio.Models;
 using Fiap.Exemplo02.MVC.Web.UnitsOfWork;
+using Fiap.Exemplo02.MVC.Web.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,77 +11,118 @@ namespace Fiap.Exemplo02.MVC.Web.Controllers
 {
     public class AlunoController : Controller
     {
+        #region FIELD
+
         //private PortalContext _context = new PortalContext();
-        ICollection<Aluno> lista;
         private UnitOfWork _unit = new UnitOfWork();
 
+        #endregion
 
         #region GET
 
         [HttpGet]
-        public ActionResult Cadastrar()
+        public ActionResult ValidarNome(String nome)
         {
-            //Buscar todos os grupos cadastrados
-            
-            var lista = _unit.AlunoRepository.Listar();
-            ViewBag.grupos = new SelectList(lista, "Id", "Nome");
-            return View();
+            var aluno = _unit.AlunoRepository.BuscarPor(a => a.Nome == nome);
+            return Json(new { existe = aluno.Any() }, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public ActionResult Cadastrar(string msg)
+        {
+            var viewModel = new AlunoViewModel()
+            {
+                ListaGrupo = ListarGrupos(),
+                Mensagem = msg,
+                DataNascimento = DateTime.Now
+            };
+            return View(viewModel);
+        }
+
+        [HttpGet]
+        public ActionResult Buscar(string nomeBusca, int? idBusca)
+        {
+            var lista = _unit.AlunoRepository.BuscarPor(a =>
+                a.Nome.Contains(nomeBusca) && (a.GrupoId == idBusca || idBusca == null));
+
+            //var viewModel = new AlunoViewModel()
+            //{
+            //    ListaGrupo = ListarGrupos(),
+            //    Alunos = lista
+            //};
+
+            return PartialView("_tabela", lista);
         }
 
         [HttpGet]
         public ActionResult Listar()
         {
-            CarregarComboGrupos();
-            //include-> busca o relacionamento(preenche o grupo que o aluno possui) ps tirar o virtual da classe
-            //var lista = _context.Aluno.Include("Grupo).ToList();
-            var lista = _unit.AlunoRepository.Listar();
-            return View(lista);
+            var viewModel = new AlunoViewModel()
+            {
+                ListaGrupo = ListarGrupos(),
+                Alunos = _unit.AlunoRepository.Listar()
+            };
+            return View(viewModel);
         }
 
         [HttpGet]
         public ActionResult Editar(int id)
         {
-            //buscar objeto (aluno) no banco
+            //buscar o objeto (aluno) no banco
             var aluno = _unit.AlunoRepository.BuscarPorId(id);
-            //manda aluno para view
-            return View(aluno);
-        }
-
-        [HttpGet]
-        public ActionResult Buscar(String nomeBusca, int? idGrupo)//tem que ser o nome nomeBusca que esta na view listar
-        {
-            if (idGrupo == null)
+            var viewModel = new AlunoViewModel()
             {
-                lista = _unit.AlunoRepository.BuscarPor(a => a.Nome.Contains(nomeBusca));
-            }
-            else
-            {
-                lista = _unit.AlunoRepository.BuscarPor(a => a.Nome.Contains(nomeBusca) && a.GrupoId == idGrupo);
-            }
-            //Buscar o aluno no banco por nome
-            CarregarComboGrupos();
-            //retorna a lista para a View Listar
-            return View("Listar", lista);
+                ListaGrupo = ListarGrupos(),
+                Nome = aluno.Nome,
+                Bolsa = aluno.Bolsa,
+                Desconto = aluno.Desconto,
+                Id = aluno.Id,
+                GrupoId = aluno.GrupoId,
+                DataNascimento = aluno.DataNascimento,
+            };
+            return View(viewModel);
         }
 
         #endregion
 
         #region POST
+
         [HttpPost]
-        public ActionResult Cadastrar(Aluno aluno)
+        public ActionResult Cadastrar(AlunoViewModel alunoViewModel)
         {
-            _unit.AlunoRepository.Cadastrar(aluno);
-            _unit.Salvar();
-            TempData["msg"] = "Aluno cadastrado!";
-            return RedirectToAction("Cadastrar");
-        }    
+            if (ModelState.IsValid)
+            {
+                var aluno = new Aluno()
+                {
+                    Nome = alunoViewModel.Nome,
+                    DataNascimento = alunoViewModel.DataNascimento,
+                    Bolsa = alunoViewModel.Bolsa,
+                    Desconto = alunoViewModel.Desconto,
+                    GrupoId = alunoViewModel.GrupoId,
+                    Cep = alunoViewModel.Cep,
+                    Bairro = alunoViewModel.Bairro,
+                    Logradouro = alunoViewModel.Logradouro,
+                    Complemento = alunoViewModel.Complemento,
+                    Localidade = alunoViewModel.Localidade
+
+                };
+                _unit.AlunoRepository.Cadastrar(aluno);
+                _unit.Salvar();
+                return RedirectToAction("Cadastrar", new { msg = "Aluno Cadastrado" });
+            }
+            else
+            {
+                alunoViewModel.ListaGrupo = ListarGrupos();
+                return View(alunoViewModel);
+            }
+        }
 
         [HttpPost]
         public ActionResult Editar(Aluno aluno)
         {
             _unit.AlunoRepository.Alterar(aluno);
-            
-            TempData["msg"] = "Aluno Atualizado";
+            _unit.Salvar();
+            TempData["msg"] = "Aluno atualizado";
             return RedirectToAction("Listar");
         }
 
@@ -89,25 +131,40 @@ namespace Fiap.Exemplo02.MVC.Web.Controllers
         {
             _unit.AlunoRepository.Remover(alunoId);
             _unit.Salvar();
-            TempData["msg"] = "Aluno removido com sucesso";
+            TempData["msg"] = "Aluno excluido";
             return RedirectToAction("Listar");
         }
-        #endregion
-        #region PRIVATE
-        private void CarregarComboGrupos()
-        {
-            ViewBag.grupos = new SelectList(_unit.GrupoRepository.Listar(), "Id", "Nome");
-        }
+
         #endregion
 
-        #region Dispose
-        //reescrevendo a função dispose do proprio controle e implementando com o disponivel da unitofwork
+        #region PRIVATE
+
+        private void CarregarComboGrupos()
+        {
+            //enviar para a tela os grupos para o "select"
+            ViewBag.grupos = new SelectList(_unit.GrupoRepository.Listar(), "Id", "Nome");
+        }
+
+        private SelectList ListarGrupos()
+        {
+            //Buscar todos os grupos cadastrados
+            var lista = _unit.GrupoRepository.Listar();
+            return new SelectList(lista, "Id", "Nome");
+        }
+
+        #endregion
+
+        #region DISPOSE
+
         protected override void Dispose(bool disposing)
         {
             _unit.Dispose();
-            base.Dispose(disposing);    
+            base.Dispose(disposing);
         }
+
         #endregion
+
+
 
     }
 }
