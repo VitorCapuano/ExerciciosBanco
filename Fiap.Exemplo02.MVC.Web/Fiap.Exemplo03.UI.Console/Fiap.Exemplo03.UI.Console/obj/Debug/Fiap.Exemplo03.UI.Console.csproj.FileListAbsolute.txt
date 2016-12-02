@@ -1,0 +1,10 @@
+C:\Users\alunoshift\Desktop\Fiap.Exemplo03.UI.Console\Fiap.Exemplo03.UI.Console\bin\Debug\Fiap.Exemplo03.UI.Console.exe.config
+C:\Users\alunoshift\Desktop\Fiap.Exemplo03.UI.Console\Fiap.Exemplo03.UI.Console\bin\Debug\Fiap.Exemplo03.UI.Console.exe
+C:\Users\alunoshift\Desktop\Fiap.Exemplo03.UI.Console\Fiap.Exemplo03.UI.Console\bin\Debug\Fiap.Exemplo03.UI.Console.pdb
+C:\Users\alunoshift\Desktop\Fiap.Exemplo03.UI.Console\Fiap.Exemplo03.UI.Console\bin\Debug\Newtonsoft.Json.dll
+C:\Users\alunoshift\Desktop\Fiap.Exemplo03.UI.Console\Fiap.Exemplo03.UI.Console\bin\Debug\System.Net.Http.Formatting.dll
+C:\Users\alunoshift\Desktop\Fiap.Exemplo03.UI.Console\Fiap.Exemplo03.UI.Console\bin\Debug\Newtonsoft.Json.xml
+C:\Users\alunoshift\Desktop\Fiap.Exemplo03.UI.Console\Fiap.Exemplo03.UI.Console\bin\Debug\System.Net.Http.Formatting.xml
+C:\Users\alunoshift\Desktop\Fiap.Exemplo03.UI.Console\Fiap.Exemplo03.UI.Console\obj\Debug\Fiap.Exemplo03.UI.Console.csprojResolveAssemblyReference.cache
+C:\Users\alunoshift\Desktop\Fiap.Exemplo03.UI.Console\Fiap.Exemplo03.UI.Console\obj\Debug\Fiap.Exemplo03.UI.Console.exe
+C:\Users\alunoshift\Desktop\Fiap.Exemplo03.UI.Console\Fiap.Exemplo03.UI.Console\obj\Debug\Fiap.Exemplo03.UI.Console.pdb

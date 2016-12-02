@@ -36,20 +36,179 @@ IF N'$(__IsSqlCmdEnabled)' NOT LIKE N'True'
 
 
 GO
+IF EXISTS (SELECT 1
+           FROM   [master].[dbo].[sysdatabases]
+           WHERE  [name] = N'$(DatabaseName)')
+    BEGIN
+        ALTER DATABASE [$(DatabaseName)]
+            SET ARITHABORT ON,
+                CONCAT_NULL_YIELDS_NULL ON,
+                CURSOR_DEFAULT LOCAL 
+            WITH ROLLBACK IMMEDIATE;
+    END
+
+
+GO
+IF EXISTS (SELECT 1
+           FROM   [master].[dbo].[sysdatabases]
+           WHERE  [name] = N'$(DatabaseName)')
+    BEGIN
+        ALTER DATABASE [$(DatabaseName)]
+            SET PAGE_VERIFY NONE,
+                DISABLE_BROKER 
+            WITH ROLLBACK IMMEDIATE;
+    END
+
+
+GO
 USE [$(DatabaseName)];
 
 
 GO
-PRINT N'Altering [dbo].[Aluno]...';
+PRINT N'Rename refactoring operation with key 857e2e2b-03e4-49ec-a429-a1f4ee0b3da5 is skipped, element [dbo].[ProfessorAluno].[Id] (SqlSimpleColumn) will not be renamed to ProfessorId';
 
 
 GO
-ALTER TABLE [dbo].[Aluno]
-    ADD [Cep]         NVARCHAR (10) NULL,
-        [Bairro]      NVARCHAR (50) NULL,
-        [Logradouro]  NVARCHAR (50) NULL,
-        [Complemento] NVARCHAR (50) NULL,
-        [Localidade]  NVARCHAR (50) NULL;
+PRINT N'Creating [dbo].[Aluno]...';
+
+
+GO
+CREATE TABLE [dbo].[Aluno] (
+    [Id]             INT            IDENTITY (1, 1) NOT NULL,
+    [Nome]           NVARCHAR (150) NOT NULL,
+    [DataNascimento] DATETIME       NOT NULL,
+    [Bolsa]          BIT            NOT NULL,
+    [Desconto]       FLOAT (53)     NULL,
+    [GrupoId]        INT            NOT NULL,
+    [Cep]            NVARCHAR (10)  NULL,
+    [Bairro]         NVARCHAR (50)  NULL,
+    [Logradouro]     NVARCHAR (50)  NULL,
+    [Complemento]    NVARCHAR (50)  NULL,
+    [Localidade]     NVARCHAR (50)  NULL,
+    PRIMARY KEY CLUSTERED ([Id] ASC)
+);
+
+
+GO
+PRINT N'Creating [dbo].[Grupo]...';
+
+
+GO
+CREATE TABLE [dbo].[Grupo] (
+    [Id]   INT           IDENTITY (1, 1) NOT NULL,
+    [Nome] VARCHAR (150) NOT NULL,
+    [Nota] FLOAT (53)    NULL,
+    PRIMARY KEY CLUSTERED ([Id] ASC)
+);
+
+
+GO
+PRINT N'Creating [dbo].[Professor]...';
+
+
+GO
+CREATE TABLE [dbo].[Professor] (
+    [Id]      INT           IDENTITY (1, 1) NOT NULL,
+    [Nome]    VARCHAR (150) NOT NULL,
+    [Salario] DECIMAL (18)  NULL,
+    PRIMARY KEY CLUSTERED ([Id] ASC)
+);
+
+
+GO
+PRINT N'Creating [dbo].[ProfessorAluno]...';
+
+
+GO
+CREATE TABLE [dbo].[ProfessorAluno] (
+    [ProfessorId] INT NOT NULL,
+    [AlunoId]     INT NOT NULL,
+    PRIMARY KEY CLUSTERED ([AlunoId] ASC, [ProfessorId] ASC)
+);
+
+
+GO
+PRINT N'Creating [dbo].[Projeto]...';
+
+
+GO
+CREATE TABLE [dbo].[Projeto] (
+    [Id]          INT           NOT NULL,
+    [Nome]        VARCHAR (150) NOT NULL,
+    [Descricao]   TEXT          NOT NULL,
+    [DataInicio]  DATETIME      NOT NULL,
+    [DataTermino] DATETIME      NULL,
+    [Entregue]    BIT           NOT NULL,
+    PRIMARY KEY CLUSTERED ([Id] ASC)
+);
+
+
+GO
+PRINT N'Creating [dbo].[FK_Aluno_Grupo]...';
+
+
+GO
+ALTER TABLE [dbo].[Aluno] WITH NOCHECK
+    ADD CONSTRAINT [FK_Aluno_Grupo] FOREIGN KEY ([GrupoId]) REFERENCES [dbo].[Grupo] ([Id]);
+
+
+GO
+PRINT N'Creating [dbo].[FK_ProfessorAluno_Professor]...';
+
+
+GO
+ALTER TABLE [dbo].[ProfessorAluno] WITH NOCHECK
+    ADD CONSTRAINT [FK_ProfessorAluno_Professor] FOREIGN KEY ([ProfessorId]) REFERENCES [dbo].[Professor] ([Id]);
+
+
+GO
+PRINT N'Creating [dbo].[FK_ProfessorAluno_Aluno]...';
+
+
+GO
+ALTER TABLE [dbo].[ProfessorAluno] WITH NOCHECK
+    ADD CONSTRAINT [FK_ProfessorAluno_Aluno] FOREIGN KEY ([AlunoId]) REFERENCES [dbo].[Aluno] ([Id]);
+
+
+GO
+PRINT N'Creating [dbo].[FK_Projeto_Grupo]...';
+
+
+GO
+ALTER TABLE [dbo].[Projeto] WITH NOCHECK
+    ADD CONSTRAINT [FK_Projeto_Grupo] FOREIGN KEY ([Id]) REFERENCES [dbo].[Grupo] ([Id]);
+
+
+GO
+-- Refactoring step to update target server with deployed transaction logs
+
+IF OBJECT_ID(N'dbo.__RefactorLog') IS NULL
+BEGIN
+    CREATE TABLE [dbo].[__RefactorLog] (OperationKey UNIQUEIDENTIFIER NOT NULL PRIMARY KEY)
+    EXEC sp_addextendedproperty N'microsoft_database_tools_support', N'refactoring log', N'schema', N'dbo', N'table', N'__RefactorLog'
+END
+GO
+IF NOT EXISTS (SELECT OperationKey FROM [dbo].[__RefactorLog] WHERE OperationKey = '857e2e2b-03e4-49ec-a429-a1f4ee0b3da5')
+INSERT INTO [dbo].[__RefactorLog] (OperationKey) values ('857e2e2b-03e4-49ec-a429-a1f4ee0b3da5')
+
+GO
+
+GO
+PRINT N'Checking existing data against newly created constraints';
+
+
+GO
+USE [$(DatabaseName)];
+
+
+GO
+ALTER TABLE [dbo].[Aluno] WITH CHECK CHECK CONSTRAINT [FK_Aluno_Grupo];
+
+ALTER TABLE [dbo].[ProfessorAluno] WITH CHECK CHECK CONSTRAINT [FK_ProfessorAluno_Professor];
+
+ALTER TABLE [dbo].[ProfessorAluno] WITH CHECK CHECK CONSTRAINT [FK_ProfessorAluno_Aluno];
+
+ALTER TABLE [dbo].[Projeto] WITH CHECK CHECK CONSTRAINT [FK_Projeto_Grupo];
 
 
 GO

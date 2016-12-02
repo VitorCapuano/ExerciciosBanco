@@ -10,3 +10,15 @@ C:\Users\alunoshift\Downloads\fabrica2016-master\Fiap.Exemplo02.MVC.Web\Fiap.Exe
 C:\Users\alunoshift\Downloads\fabrica2016-master\Fiap.Exemplo02.MVC.Web\Fiap.Exemplo02.Persistencia\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\alunoshift\Downloads\fabrica2016-master\Fiap.Exemplo02.MVC.Web\Fiap.Exemplo02.Persistencia\obj\Debug\Fiap.Exemplo02.Persistencia.dll
 C:\Users\alunoshift\Downloads\fabrica2016-master\Fiap.Exemplo02.MVC.Web\Fiap.Exemplo02.Persistencia\obj\Debug\Fiap.Exemplo02.Persistencia.pdb
+C:\Users\alunoshift\Desktop\ExerciciosBanco\Fiap.Exemplo02.MVC.Web\Fiap.Exemplo02.Persistencia\bin\Debug\Fiap.Exemplo02.Persistencia.dll.config
+C:\Users\alunoshift\Desktop\ExerciciosBanco\Fiap.Exemplo02.MVC.Web\Fiap.Exemplo02.Persistencia\bin\Debug\Fiap.Exemplo02.Persistencia.dll
+C:\Users\alunoshift\Desktop\ExerciciosBanco\Fiap.Exemplo02.MVC.Web\Fiap.Exemplo02.Persistencia\bin\Debug\Fiap.Exemplo02.Persistencia.pdb
+C:\Users\alunoshift\Desktop\ExerciciosBanco\Fiap.Exemplo02.MVC.Web\Fiap.Exemplo02.Persistencia\bin\Debug\EntityFramework.dll
+C:\Users\alunoshift\Desktop\ExerciciosBanco\Fiap.Exemplo02.MVC.Web\Fiap.Exemplo02.Persistencia\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\alunoshift\Desktop\ExerciciosBanco\Fiap.Exemplo02.MVC.Web\Fiap.Exemplo02.Persistencia\bin\Debug\Fiap.Exemplo02.Dominio.dll
+C:\Users\alunoshift\Desktop\ExerciciosBanco\Fiap.Exemplo02.MVC.Web\Fiap.Exemplo02.Persistencia\bin\Debug\Fiap.Exemplo02.Dominio.pdb
+C:\Users\alunoshift\Desktop\ExerciciosBanco\Fiap.Exemplo02.MVC.Web\Fiap.Exemplo02.Persistencia\bin\Debug\EntityFramework.xml
+C:\Users\alunoshift\Desktop\ExerciciosBanco\Fiap.Exemplo02.MVC.Web\Fiap.Exemplo02.Persistencia\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\alunoshift\Desktop\ExerciciosBanco\Fiap.Exemplo02.MVC.Web\Fiap.Exemplo02.Persistencia\obj\Debug\Fiap.Exemplo02.Persistencia.csprojResolveAssemblyReference.cache
+C:\Users\alunoshift\Desktop\ExerciciosBanco\Fiap.Exemplo02.MVC.Web\Fiap.Exemplo02.Persistencia\obj\Debug\Fiap.Exemplo02.Persistencia.dll
+C:\Users\alunoshift\Desktop\ExerciciosBanco\Fiap.Exemplo02.MVC.Web\Fiap.Exemplo02.Persistencia\obj\Debug\Fiap.Exemplo02.Persistencia.pdb

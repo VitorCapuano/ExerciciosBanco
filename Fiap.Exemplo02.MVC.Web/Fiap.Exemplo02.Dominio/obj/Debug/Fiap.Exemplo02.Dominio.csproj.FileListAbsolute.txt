@@ -8,3 +8,13 @@ C:\Users\alunoshift\Downloads\fabrica2016-master\Fiap.Exemplo02.MVC.Web\Fiap.Exe
 C:\Users\alunoshift\Downloads\fabrica2016-master\Fiap.Exemplo02.MVC.Web\Fiap.Exemplo02.Dominio\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\alunoshift\Downloads\fabrica2016-master\Fiap.Exemplo02.MVC.Web\Fiap.Exemplo02.Dominio\obj\Debug\Fiap.Exemplo02.Dominio.dll
 C:\Users\alunoshift\Downloads\fabrica2016-master\Fiap.Exemplo02.MVC.Web\Fiap.Exemplo02.Dominio\obj\Debug\Fiap.Exemplo02.Dominio.pdb
+C:\Users\alunoshift\Desktop\ExerciciosBanco\Fiap.Exemplo02.MVC.Web\Fiap.Exemplo02.Dominio\bin\Debug\Fiap.Exemplo02.Dominio.dll.config
+C:\Users\alunoshift\Desktop\ExerciciosBanco\Fiap.Exemplo02.MVC.Web\Fiap.Exemplo02.Dominio\bin\Debug\Fiap.Exemplo02.Dominio.dll
+C:\Users\alunoshift\Desktop\ExerciciosBanco\Fiap.Exemplo02.MVC.Web\Fiap.Exemplo02.Dominio\bin\Debug\Fiap.Exemplo02.Dominio.pdb
+C:\Users\alunoshift\Desktop\ExerciciosBanco\Fiap.Exemplo02.MVC.Web\Fiap.Exemplo02.Dominio\bin\Debug\EntityFramework.dll
+C:\Users\alunoshift\Desktop\ExerciciosBanco\Fiap.Exemplo02.MVC.Web\Fiap.Exemplo02.Dominio\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\alunoshift\Desktop\ExerciciosBanco\Fiap.Exemplo02.MVC.Web\Fiap.Exemplo02.Dominio\bin\Debug\EntityFramework.xml
+C:\Users\alunoshift\Desktop\ExerciciosBanco\Fiap.Exemplo02.MVC.Web\Fiap.Exemplo02.Dominio\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\alunoshift\Desktop\ExerciciosBanco\Fiap.Exemplo02.MVC.Web\Fiap.Exemplo02.Dominio\obj\Debug\Fiap.Exemplo02.Dominio.csprojResolveAssemblyReference.cache
+C:\Users\alunoshift\Desktop\ExerciciosBanco\Fiap.Exemplo02.MVC.Web\Fiap.Exemplo02.Dominio\obj\Debug\Fiap.Exemplo02.Dominio.dll
+C:\Users\alunoshift\Desktop\ExerciciosBanco\Fiap.Exemplo02.MVC.Web\Fiap.Exemplo02.Dominio\obj\Debug\Fiap.Exemplo02.Dominio.pdb

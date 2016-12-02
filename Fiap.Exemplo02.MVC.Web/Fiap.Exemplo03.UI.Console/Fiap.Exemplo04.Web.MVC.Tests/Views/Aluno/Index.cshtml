@@ -1,0 +1,45 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Bolsa</th>
+            <th>Desconto</th>
+            <th>Data Nascimento</th>
+        </tr>
+    </thead>
+    <tbody>
+
+    </tbody>
+</table>
+
+<h2>Index</h2>
+
+@section scripts{
+    <script>
+        $.ajax({
+            url: "http://localhost:58692/api/Aluno/",
+            type: "GET",
+            dataType: "json",
+            success: function (data, statusString, xhr) {
+                $.each(data, function(index,item){
+                    var linha = $("<tr>");
+                    linha.append($("<td>").text(item.Nome));
+                    linha.append($("<td>").text(item.Bolsa));
+                    linha.append($("<td>").text(item.Desconto));
+                    linha.append($("<td>").text(item.DataNascimento));
+
+                    $("tbody").append(linha);
+                })
+            },
+            error: function (data, statusString, xhr) {
+                alert("Erro!");
+            }
+        });
+
+    </script>
+}

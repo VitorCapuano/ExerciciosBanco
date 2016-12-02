@@ -2,7 +2,7 @@
 @foreach (var item in Model)
 {
     <tr>
-        <td>@item.Nome</td>
+        <td><a href="/Aluno/Editar/@item.Id">@item.Nome</a></td>
         <td>@item.DataNascimento</td>
         <td>@(item.Bolsa ? "Sim" : "Não")</td>
         <td>@item.Desconto</td>

@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fiap.Exemplo03.UI.Console", "Fiap.Exemplo03.UI.Console\Fiap.Exemplo03.UI.Console.csproj", "{6B050D5C-E042-44B4-A618-91B8C29E392A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fiap.Exemplo04.Web.MVC.Tests", "Fiap.Exemplo04.Web.MVC.Tests\Fiap.Exemplo04.Web.MVC.Tests.csproj", "{81488F13-E6C3-4A71-B42F-FAA93543CD71}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6B050D5C-E042-44B4-A618-91B8C29E392A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B050D5C-E042-44B4-A618-91B8C29E392A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B050D5C-E042-44B4-A618-91B8C29E392A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B050D5C-E042-44B4-A618-91B8C29E392A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{81488F13-E6C3-4A71-B42F-FAA93543CD71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81488F13-E6C3-4A71-B42F-FAA93543CD71}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81488F13-E6C3-4A71-B42F-FAA93543CD71}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81488F13-E6C3-4A71-B42F-FAA93543CD71}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
